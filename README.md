@@ -1,6 +1,10 @@
 # Nexus App
 
 Welcome to the Nexus app! This application is built using [Expo](https://expo.dev) and integrates with Supabase for backend services to implement a robust Challenges feature.
+## Watch the Video Demo
+
+![Video Demo Thumbnail](https://img.youtube.com/vi/BPLBOkH5JDA/0.jpg)
+[Watch the Project Demo on YouTube](https://youtu.be/BPLBOkH5JDA)
 
 ## Challenges Overview
 
