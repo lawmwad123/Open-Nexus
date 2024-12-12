@@ -1,6 +1,6 @@
-# Nexus Design App
+# Nexus App
 
-Welcome to the Nexus Design app! This application is built using [Expo](https://expo.dev) and integrates with Supabase for backend services to implement a robust Challenges feature.
+Welcome to the Nexus app! This application is built using [Expo](https://expo.dev) and integrates with Supabase for backend services to implement a robust Challenges feature.
 
 ## Challenges Overview
 
