@@ -1,50 +1,118 @@
-# Welcome to your Expo app 👋
+# Nexus Design App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the Nexus Design app! This application is built using [Expo](https://expo.dev) and integrates with Supabase for backend services to implement a robust Challenges feature.
 
-## Get started
+## Challenges Overview
 
-1. Install dependencies
+A challenge is a time-limited competition where multiple participants can compete with content like videos, images, or audio. Users can:
+- Create a new challenge.
+- Join an existing challenge as a participant.
+- Vote, like, or comment on submissions in a challenge.
 
-   ```bash
-   npm install
-   ```
+## Challenges Screen UI
 
-2. Start the app
+### Active Challenges:
+- Display challenges currently open for participation or voting.
+- Each challenge is shown as a card or rectangle, featuring:
+  - Challenge title.
+  - Thumbnail of the most voted or trending participant.
+  - Countdown timer showing remaining time.
 
-   ```bash
-    npx expo start
-   ```
+### Completed Challenges:
+- Display challenges that have ended.
+- Show the winner prominently along with total votes received.
 
-In the output, you'll find options to open the app in a
+### Challenge Details Screen:
+- Show all submissions for a specific challenge.
+- Display submissions as a grid or carousel for easy navigation.
+- Users can vote, like, or comment on each submission.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Challenge Creation
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### New Challenge Workflow:
+- Allow users to create a challenge by:
+  - Entering a title and description.
+  - Setting the challenge duration (e.g., 24 hours).
+  - Optionally uploading a cover image for the challenge.
+  - Choosing the type of submissions allowed: video, image, or audio.
+- Store challenge metadata in Supabase:
+  - Challenge ID, title, description, creator ID, start time, end time, and allowed submission type.
 
-## Get a fresh project
+### Joining an Existing Challenge:
+- Users can join by submitting content that matches the allowed type.
+- Store submissions in Supabase with metadata:
+  - Submission ID, user ID, challenge ID, content URL, and timestamp.
 
-When you're ready, run:
+## Challenge Participation and Voting
 
-```bash
-npm run reset-project
-```
+### Submissions:
+- Participants can upload their submissions directly within the app.
+- Support video recording, photo capture, or audio recording using the device's camera and microphone.
+- Store media temporarily in Supabase storage.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Voting:
+- Display all submissions on the Challenge Details screen.
+- Users can vote for one submission per challenge.
+- Track votes in Supabase:
+  - Store user ID, challenge ID, and submission ID to prevent multiple votes.
 
-## Learn more
+### Likes and Comments:
+- Allow users to like and comment on submissions.
+- Comments flow dynamically alongside submissions for a real-time feel.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Challenge Completion and Results
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Once the challenge duration ends:
+- Identify the submission with the highest votes as the winner.
+- Mark the challenge as completed in Supabase.
+- Notify participants and voters of the result via push notifications.
 
-## Join the community
+### Winner Announcement Screen:
+- Display the winning submission with its vote count.
+- Show a leaderboard of top participants.
 
-Join our community of developers creating universal apps.
+## Backend Architecture
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Supabase Tables:
+- Challenges: Stores challenge metadata.
+- Submissions: Stores participants' content.
+- Votes: Tracks user votes for submissions.
+- Comments: Stores comments for submissions.
+
+### Logic:
+- Use Supabase triggers or cron jobs to check for challenge expiry and update the status automatically.
+- Implement real-time updates for new votes, likes, and comments.
+
+## Notifications and Engagement
+
+Send notifications for:
+- New challenges created.
+- Invitations to join challenges.
+- New votes, likes, or comments on submissions.
+- Challenge results and winners.
+
+## UI/UX Design Notes
+
+- Use vibrant colors and animations to make challenges visually engaging.
+- Include dynamic countdown timers for active challenges.
+- Provide clear CTAs (e.g., "Join Challenge," "Vote Now").
+- Add swipe gestures to navigate between submissions.
+
+## Development Tools
+
+### Frontend:
+- Use Expo Camera for media capture.
+- Use Lottie or Reanimated for animations.
+- Use React Navigation for challenge screens and transitions.
+
+### Backend:
+- Supabase for authentication, database, and media storage.
+- Real-time updates for voting, comments, and notifications.
+
+## Deliverables
+- Challenges Screen: List active and completed challenges with filters.
+- Challenge Details Screen: Show all submissions, voting options, and comments.
+- Challenge Creation: Allow users to create and join challenges.
+- Voting and Interaction: Enable real-time voting, likes, and comments.
+- Results and Leaderboard: Display winners and rankings after challenge completion.
+- Notifications: Real-time engagement for all challenge activities.
